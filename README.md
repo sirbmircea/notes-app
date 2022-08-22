@@ -24,8 +24,7 @@ java -jar <jar-name>.jar run-rest-controller
 
 ## Architecture
 
-![image](https://user-images.githubusercontent.com/111562058/185957842-1503d9d1-a5a5-484b-a0ba-401da84ba711.png)
-
+![image](https://user-images.githubusercontent.com/111562058/186026901-c6a42e5d-6e32-4ac9-ba28-5734883b280c.png)
 
 
 TODO: adauga aplicatia angular intr-un model numit forntend, si muta aplicatia java intr-un modul numit backend
