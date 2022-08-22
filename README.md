@@ -3,6 +3,4 @@
 
 TODO: adauga aplicatia angular intr-un model numit forntend, si muta aplicatia java intr-un modul numit backend
 
-TODO: logger in loc de sout
-
 TODO: poate add id
