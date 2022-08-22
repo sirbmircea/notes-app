@@ -1,5 +1,5 @@
 # notes-app
-![image](https://user-images.githubusercontent.com/111562058/185897691-2dabdc16-dda3-450c-9ff1-4d3b058ff7b9.png)
+![image](https://user-images.githubusercontent.com/111562058/185957842-1503d9d1-a5a5-484b-a0ba-401da84ba711.png)
 
 TODO: 
   option 1. sa fac un modul lib, in care sa expun service-ul, iar apoi sa fac alte doua module care sa il foloseasca, pt a crea controllerii
