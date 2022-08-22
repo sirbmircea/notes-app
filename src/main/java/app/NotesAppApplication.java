@@ -7,9 +7,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.Console;
+import java.util.logging.Logger;
 
 @SpringBootApplication
 public class NotesAppApplication {
+    private static final Logger logger = Logger.getLogger(NoteControllerConsole.class.getName());
 
     public static void main(String[] args) {
 
@@ -17,8 +19,8 @@ public class NotesAppApplication {
         if (console != null || args.length > 0) {
             try {
                 new NoteControllerConsole(args);
-            } catch (NoArgumentsException | NoSuchMethodException | InvalidNumberOfArgumentsException e) {
-                e.printStackTrace();
+            } catch (NoArgumentsException | InvalidNumberOfArgumentsException | NoSuchMethodException e) {
+                logger.severe(e.getMessage());
             }
         } else {
             SpringApplication.run(NotesAppApplication.class, args);

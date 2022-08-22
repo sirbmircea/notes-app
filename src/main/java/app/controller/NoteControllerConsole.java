@@ -7,8 +7,10 @@ import app.service.NoteService;
 import app.service.ServiceProvider;
 
 import java.util.Set;
+import java.util.logging.Logger;
 
 public class NoteControllerConsole {
+    private static final Logger logger = Logger.getLogger(NoteControllerConsole.class.getName());
     private NoteService noteService = ServiceProvider.getInstance().get(NoteService.class);
     private final String ADD_RECEIVES_2_PARAMETERS = "The method add receives 2 parameters!";
 
@@ -36,9 +38,9 @@ public class NoteControllerConsole {
         if (args[0].equals("list")) {
             Set<Note> noteSet = noteService.list();
             if (!noteSet.isEmpty()) {
-                noteSet.forEach(System.out::println);
+                noteSet.forEach(note -> logger.info(note.toString()));
             } else {
-                System.out.println("List is empty!");
+                logger.info("List is empty!");
             }
 
         } else if (args[0].equals("add")) {
@@ -52,9 +54,9 @@ public class NoteControllerConsole {
         if (args[0].equals("list")) {
             Note note = noteService.list(args[1]);
             if (!note.getNoteTitle().equals("")) {
-                System.out.println(note);
+                logger.info(note.toString());
             } else {
-                System.out.println("Couldn't find the note with the title: " + args[1] + "!");
+                logger.info(String.format("Couldn't find the note with the title: %s!", args[1]));
             }
 
         } else if (args[0].equals("add")) {
@@ -68,9 +70,9 @@ public class NoteControllerConsole {
         if (args[0].equals("add")) {
             Note note = noteService.add(new Note(args[1], args[2]));
             if (note.getNoteTitle().equals("")) {
-                System.out.println("We have a duplicate!");
+                logger.warning("We have a duplicate!");
             } else {
-                System.out.println("The note was added!");
+                logger.info("The note was added!");
             }
 
         } else if (args[0].equals("list")) {
