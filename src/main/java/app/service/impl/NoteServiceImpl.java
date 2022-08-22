@@ -23,7 +23,8 @@ public class NoteServiceImpl implements NoteService {
             return new Note("", "");
         } else {
             Note note = noteRepository.add(newNote);
-            logger.info("The note was added!");
+            String message = String.format("The note %s was added!", newNote);
+            logger.info(message);
             return note;
         }
     }
@@ -43,9 +44,11 @@ public class NoteServiceImpl implements NoteService {
     public Note list(String noteTitle) {
         Note note = noteRepository.list(noteTitle);
         if (!note.getNoteTitle().equals("")) {
-            logger.info(String.format("Fond the note: %s", note));
+            String message = String.format("Fond the note: %s", note);
+            logger.info(message);
         } else {
-            logger.info(String.format("Couldn't find the note with the title: %s!", noteTitle));
+            String message = String.format("Couldn't find the note with the title: %s!", noteTitle);
+            logger.info(message);
         }
         return note;
     }

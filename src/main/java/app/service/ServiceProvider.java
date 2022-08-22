@@ -14,17 +14,12 @@ public class ServiceProvider {
 
     private ServiceProvider() {
         NoteSerializationService noteSerializationService = new NoteSerializationServiceImpl();
-        registry.put(NoteSerializationService.class, noteSerializationService);
-
         NoteRepository noteRepository = new NoteRepositoryFileSystem(noteSerializationService);
-        registry.put(NoteRepository.class, noteRepository);
-
-        NoteService noteService = new NoteServiceImpl(noteRepository);
-        registry.put(NoteService.class, noteService);
+        registry.put(NoteService.class, new NoteServiceImpl(noteRepository));
     }
 
-    private final static class SingletonHolder {
-        private final static ServiceProvider INSTANCE = new ServiceProvider();
+    private static final class SingletonHolder {
+        private static final ServiceProvider INSTANCE = new ServiceProvider();
     }
 
     public static ServiceProvider getInstance() {
