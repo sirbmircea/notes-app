@@ -20,7 +20,7 @@ public class NotesAppApplication {
             } catch (NoArgumentsException | NoSuchMethodException | InvalidNumberOfArgumentsException e) {
                 e.printStackTrace();
             }
-        }else {
+        } else {
             SpringApplication.run(NotesAppApplication.class, args);
         }
 
