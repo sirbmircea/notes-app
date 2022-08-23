@@ -28,4 +28,4 @@ mvn package
 
 ## Architecture
 
-![image](https://user-images.githubusercontent.com/111562058/186278498-265eea5e-4614-48f4-93fe-8ae8ec7b3cdd.png)
+![image](https://user-images.githubusercontent.com/111562058/186278566-ee45db98-8b58-4fbe-bf94-0bc72e766db8.png)
