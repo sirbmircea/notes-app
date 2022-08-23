@@ -20,7 +20,11 @@ java -jar <jar-name>.jar list
 ```shell
 java -jar <jar-name>.jar run-spring-boot
 ```
-
+## Create jar file
+Open Windows PowerShell in the root folder "notes-app"
+```shell
+mvn package
+```
 
 ## Architecture
 
