@@ -2,7 +2,8 @@ package app.controller;
 
 
 import app.model.ConsoleRequestObject;
-import app.util.ArgumentsHandler;
+import app.service.ConsoleArgumentsParser;
+import app.service.ConsoleObjectDispatcherService;
 
 public class NoteControllerConsole {
 
@@ -19,8 +20,8 @@ public class NoteControllerConsole {
     }
 
     public void consoleRequest(String... args){
-        ConsoleRequestObject consoleRequestObject = ArgumentsHandler.parseAndDispatch(args);
-        ArgumentsHandler.commandDispatcher(consoleRequestObject);
+        ConsoleRequestObject consoleRequestObject = ConsoleArgumentsParser.parse(args);
+        new ConsoleObjectDispatcherService().commandDispatcher(consoleRequestObject);
     }
 
 }

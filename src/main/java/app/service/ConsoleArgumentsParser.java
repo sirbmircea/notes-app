@@ -27,7 +27,7 @@ public class ConsoleArgumentsParser {
             return new ConsoleRequestObject(Command.valueOf(args[0].toUpperCase()), params, args);
         } else {
             try {
-                throw new NoSuchMethodException("The hhhhhhh " + args[0] + " doesn't exist!");
+                throw new NoSuchMethodException("The method " + args[0] + " doesn't exist!");
             } catch (NoSuchMethodException e) {
                 logger.severe(e.getMessage());
             }

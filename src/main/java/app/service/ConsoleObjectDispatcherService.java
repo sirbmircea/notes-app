@@ -1,30 +1,43 @@
-package app.service.impl;
+package app.service;
 
 import app.NotesAppApplication;
 import app.exceptions.InvalidNumberOfArgumentsException;
+import app.model.ConsoleRequestObject;
 import app.model.Note;
-import app.service.ConsoleRequestHandler;
-import app.service.NoteService;
-import app.service.ServiceProvider;
 import org.springframework.boot.SpringApplication;
 
 import java.util.logging.Logger;
 
-public class ConsoleRequestHandlerImpl implements ConsoleRequestHandler {
-    private static final Logger logger = Logger.getLogger(ConsoleRequestHandlerImpl.class.getName());
+public class ConsoleObjectDispatcherService {
+
+    private static final Logger logger = Logger.getLogger(ConsoleObjectDispatcherService.class.getName());
+
     private NoteService noteService;
 
-    public ConsoleRequestHandlerImpl() {
+    public ConsoleObjectDispatcherService() {
         noteService = ServiceProvider.getInstance().get(NoteService.class);
     }
 
-    @Override
-    public void runSpringBoot(String... args) {
+    public void commandDispatcher(ConsoleRequestObject consoleRequestObject) {
+        if (consoleRequestObject.getCommand() != null) {
+            switch (consoleRequestObject.getCommand()) {
+                case ADD:
+                    addCommand(consoleRequestObject.getParams());
+                    break;
+                case LIST:
+                    listCommand(consoleRequestObject.getParams());
+                    break;
+                case RUNSPRINGBOOT:
+                    runSpringBoot(consoleRequestObject.getArgs());
+            }
+        }
+    }
+    private void runSpringBoot(String... args) {
         SpringApplication.run(NotesAppApplication.class, args);
     }
 
-    @Override
-    public void listCommand(String... params) {
+
+    private void listCommand(String... params) {
         switch (params.length) {
             case 0:
                 noteService.list();
@@ -42,8 +55,7 @@ public class ConsoleRequestHandlerImpl implements ConsoleRequestHandler {
         }
     }
 
-    @Override
-    public void addCommand(String... params) {
+    private void addCommand(String... params) {
         if (params.length==2) {
             noteService.add(new Note(params[0], params[1]));
         } else {
@@ -56,4 +68,3 @@ public class ConsoleRequestHandlerImpl implements ConsoleRequestHandler {
 
     }
 }
-
