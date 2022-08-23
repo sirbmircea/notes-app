@@ -1,7 +1,7 @@
 package app.service;
 
 import app.NotesAppApplication;
-import app.exceptions.InvalidNumberOfArgumentsException;
+import app.exceptions.ExceptionContainer;
 import app.model.ConsoleRequestObject;
 import app.model.Note;
 import app.service.interfaces.NoteService;
@@ -49,11 +49,8 @@ public class ConsoleObjectDispatcherService {
                 noteService.list(params[0]);
                 break;
             default:
-                try {
-                    throw new InvalidNumberOfArgumentsException("The method list receives 0 or 1 parameters!");
-                } catch (InvalidNumberOfArgumentsException e) {
-                    logger.severe(e.getMessage());
-                }
+                String exception = String.format(ExceptionContainer.INVALID_NO_OF_ARGS, "list", "0 or 1");
+                logger.severe(exception);
                 break;
         }
     }
@@ -62,11 +59,8 @@ public class ConsoleObjectDispatcherService {
         if (params.length == 2) {
             noteService.add(new Note(params[0], params[1]));
         } else {
-            try {
-                throw new InvalidNumberOfArgumentsException("The method add receives 2 parameters!");
-            } catch (InvalidNumberOfArgumentsException e) {
-                logger.severe(e.getMessage());
-            }
+            String exception = String.format(ExceptionContainer.INVALID_NO_OF_ARGS, "add", "2");
+            logger.severe(exception);
         }
 
     }

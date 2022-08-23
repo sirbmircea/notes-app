@@ -1,6 +1,6 @@
 package app.util;
 
-import app.exceptions.NoArgumentsException;
+import app.exceptions.ExceptionContainer;
 import app.model.Command;
 import app.model.ConsoleRequestObject;
 
@@ -16,21 +16,14 @@ public class ConsoleArgumentsParser {
 
     public static ConsoleRequestObject parse(String... args) {
         if (args.length == 0) {
-            try {
-                throw new NoArgumentsException();
-            } catch (NoArgumentsException e) {
-                logger.severe(e.getMessage());
-            }
+            logger.severe(ExceptionContainer.NO_ARGS_GIVEN);
         } else if (Arrays.stream(Command.values())
                 .anyMatch(command -> command.name().toLowerCase().equals(args[0]))) {
             String[] params = Arrays.copyOfRange(args, 1, args.length);
             return new ConsoleRequestObject(Command.valueOf(args[0].toUpperCase()), params, args);
         } else {
-            try {
-                throw new NoSuchMethodException("The method " + args[0] + " doesn't exist!");
-            } catch (NoSuchMethodException e) {
-                logger.severe(e.getMessage());
-            }
+            String exception = String.format(ExceptionContainer.NO_SUCH_METHOD, args[0]);
+            logger.severe(exception);
         }
         return new ConsoleRequestObject();
     }
