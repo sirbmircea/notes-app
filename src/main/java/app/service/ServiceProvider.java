@@ -1,9 +1,11 @@
 package app.service;
 
-import app.repository.NoteRepository;
+import app.repository.interfaces.NoteRepository;
 import app.repository.impl.NoteRepositoryFileSystem;
 import app.service.impl.NoteSerializationServiceImpl;
 import app.service.impl.NoteServiceImpl;
+import app.service.interfaces.NoteSerializationService;
+import app.service.interfaces.NoteService;
 
 import java.util.HashMap;
 import java.util.Map;

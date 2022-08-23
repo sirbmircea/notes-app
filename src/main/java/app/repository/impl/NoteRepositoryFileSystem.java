@@ -1,8 +1,8 @@
 package app.repository.impl;
 
 import app.model.Note;
-import app.repository.NoteRepository;
-import app.service.NoteSerializationService;
+import app.repository.interfaces.NoteRepository;
+import app.service.interfaces.NoteSerializationService;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

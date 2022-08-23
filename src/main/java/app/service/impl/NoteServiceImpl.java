@@ -1,8 +1,8 @@
 package app.service.impl;
 
 import app.model.Note;
-import app.repository.NoteRepository;
-import app.service.NoteService;
+import app.repository.interfaces.NoteRepository;
+import app.service.interfaces.NoteService;
 
 import java.util.Set;
 import java.util.logging.Logger;

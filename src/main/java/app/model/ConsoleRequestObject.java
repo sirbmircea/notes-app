@@ -5,7 +5,9 @@ public class ConsoleRequestObject {
     private String[] params;
     private String[] args;
 
-    public ConsoleRequestObject(){}
+    public ConsoleRequestObject() {
+    }
+
     public ConsoleRequestObject(Command command, String[] params, String[] args) {
         this.command = command;
         this.params = params;

@@ -1,4 +1,4 @@
-package app.service;
+package app.util;
 
 import app.exceptions.NoArgumentsException;
 import app.model.Command;

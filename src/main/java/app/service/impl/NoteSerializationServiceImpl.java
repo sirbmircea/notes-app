@@ -1,7 +1,7 @@
 package app.service.impl;
 
 import app.model.Note;
-import app.service.NoteSerializationService;
+import app.service.interfaces.NoteSerializationService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

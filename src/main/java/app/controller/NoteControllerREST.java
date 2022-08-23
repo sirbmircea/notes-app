@@ -1,7 +1,7 @@
 package app.controller;
 
 import app.model.Note;
-import app.service.NoteService;
+import app.service.interfaces.NoteService;
 import app.service.ServiceProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

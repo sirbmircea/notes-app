@@ -2,7 +2,7 @@ package app.controller;
 
 
 import app.model.ConsoleRequestObject;
-import app.service.ConsoleArgumentsParser;
+import app.util.ConsoleArgumentsParser;
 import app.service.ConsoleObjectDispatcherService;
 
 public class NoteControllerConsole {
@@ -15,13 +15,15 @@ public class NoteControllerConsole {
         return SingletonHolder.INSTANCE;
     }
 
+
     private NoteControllerConsole() {
 
     }
 
-    public void consoleRequest(String... args){
+    public void consoleRequest(String... args) {
         ConsoleRequestObject consoleRequestObject = ConsoleArgumentsParser.parse(args);
-        new ConsoleObjectDispatcherService().commandDispatcher(consoleRequestObject);
+        ConsoleObjectDispatcherService consoleObjectDispatcherService = new ConsoleObjectDispatcherService();
+        consoleObjectDispatcherService.commandDispatcher(consoleRequestObject);
     }
 
 }

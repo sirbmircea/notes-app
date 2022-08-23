@@ -4,6 +4,7 @@ import app.NotesAppApplication;
 import app.exceptions.InvalidNumberOfArgumentsException;
 import app.model.ConsoleRequestObject;
 import app.model.Note;
+import app.service.interfaces.NoteService;
 import org.springframework.boot.SpringApplication;
 
 import java.util.logging.Logger;
@@ -29,9 +30,11 @@ public class ConsoleObjectDispatcherService {
                     break;
                 case RUNSPRINGBOOT:
                     runSpringBoot(consoleRequestObject.getArgs());
+                    break;
             }
         }
     }
+
     private void runSpringBoot(String... args) {
         SpringApplication.run(NotesAppApplication.class, args);
     }
@@ -56,7 +59,7 @@ public class ConsoleObjectDispatcherService {
     }
 
     private void addCommand(String... params) {
-        if (params.length==2) {
+        if (params.length == 2) {
             noteService.add(new Note(params[0], params[1]));
         } else {
             try {
