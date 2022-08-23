@@ -17,7 +17,7 @@ public class NotesAppApplication {
 
         Console console = System.console();
         if (console != null || args.length > 0) {
-            if (args.length == 1 && args[0].equals("run-rest-controller") ) {
+            if (args.length == 1 && args[0].equals("run-spring-boot") ) {
                 SpringApplication.run(NotesAppApplication.class, args);
             } else {
                 try {
