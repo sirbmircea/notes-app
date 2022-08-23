@@ -16,9 +16,9 @@ java -jar <jar-name>.jar list <note_title>
 ```shell
 java -jar <jar-name>.jar list
 ```
-#### Run REST Controller
+#### Start Spring boot
 ```shell
-java -jar <jar-name>.jar run-rest-controller
+java -jar <jar-name>.jar run-spring-boot
 ```
 
 
