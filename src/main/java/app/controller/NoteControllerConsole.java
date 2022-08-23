@@ -1,13 +1,10 @@
 package app.controller;
 
-import app.model.Note;
-import app.service.NoteService;
-import app.service.ServiceProvider;
 
-import java.util.Set;
+import app.model.ConsoleRequestObject;
+import app.util.ArgumentsHandler;
 
 public class NoteControllerConsole {
-    private NoteService noteService;
 
     private static class SingletonHolder {
         private static final NoteControllerConsole INSTANCE = new NoteControllerConsole();
@@ -17,22 +14,13 @@ public class NoteControllerConsole {
         return SingletonHolder.INSTANCE;
     }
 
-    public NoteControllerConsole() {
-        noteService = ServiceProvider.getInstance().get(NoteService.class);
+    private NoteControllerConsole() {
+
     }
 
-
-    public Note add(Note newNote) {
-        return noteService.add(newNote);
+    public void consoleRequest(String... args){
+        ConsoleRequestObject consoleRequestObject = ArgumentsHandler.parseAndDispatch(args);
+        ArgumentsHandler.commandDispatcher(consoleRequestObject);
     }
-
-    public Set<Note> list() {
-        return noteService.list();
-    }
-
-    public Note list(String noteTitle) {
-        return noteService.list(noteTitle);
-    }
-
 
 }
