@@ -28,8 +28,7 @@ mvn package
 
 ## Architecture
 
-![image](https://user-images.githubusercontent.com/111562058/186026901-c6a42e5d-6e32-4ac9-ba28-5734883b280c.png)
-
+![image](https://user-images.githubusercontent.com/111562058/186277523-684464d3-878a-4de3-8d0a-fddc48c3d90f.png)
 
 INTREBARE: NoteControllerConsole e prea incarcat ca sa fie considerat controller. Problema e ca pentru a sti pe care dintre functionalitatile pe care le expune controllerul sa o apelez (add, list, find), ar trebui sa prelucrez mai intai datele, ceea ce ar insemna ca nu mai este NoteControllerConsole primul layer cel care preia console requestul(args-urile). Deci iar am o clasa incarcata care preia requestul..
 
