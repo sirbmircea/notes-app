@@ -19,8 +19,13 @@ public class ConsoleObjectDispatcherService {
         noteService = ServiceProvider.getInstance().get(NoteService.class);
     }
 
-    public void commandDispatcher(ConsoleRequestObject consoleRequestObject) {
-        if (consoleRequestObject.getCommand() != null) {
+    public void dispatch(ConsoleRequestObject consoleRequestObject) {
+        if (consoleRequestObject.getArgs() == null) {
+            logger.severe(ExceptionContainer.NO_ARGS_GIVEN);
+        } else if (consoleRequestObject.getCommand() == null) {
+            String exception = String.format(ExceptionContainer.NO_SUCH_METHOD, consoleRequestObject.getArgs()[0]);
+            logger.severe(exception);
+        } else {
             switch (consoleRequestObject.getCommand()) {
                 case ADD:
                     addCommand(consoleRequestObject.getParams());
