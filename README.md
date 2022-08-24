@@ -29,3 +29,5 @@ mvn package
 ## Architecture
 
 ![image](https://user-images.githubusercontent.com/111562058/186296114-8b8dc792-568c-42f9-b4a9-b37e591409c8.png)
+
+Mai editez din cand in cand in branch-ul optimizations-post-submission. Masterul e ca am trimis pe mail, dar daca vreti, puteti sa va uitati direct in optimizations-post-submission, pentru ca o sa fie cod mai clean si mai clar. 
