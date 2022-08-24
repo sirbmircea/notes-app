@@ -18,12 +18,13 @@ public class NoteControllerCLI {
     }
 
     ArgumentsHandlingService argumentsHandlingService = new ArgumentsHandlingServiceImpl();
+
     private NoteControllerCLI() {
 
     }
 
     public void consoleRequest(String... args) {
-        Optional <CliRequestObject> cliRequestObject = argumentsHandlingService.parse(args);
+        Optional<CliRequestObject> cliRequestObject = argumentsHandlingService.parse(args);
         argumentsHandlingService.dispatch(cliRequestObject);
     }
 

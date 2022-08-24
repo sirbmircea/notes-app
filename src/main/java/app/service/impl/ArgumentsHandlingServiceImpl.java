@@ -18,15 +18,15 @@ public class ArgumentsHandlingServiceImpl implements ArgumentsHandlingService {
 
     private static final Logger logger = Logger.getLogger(ArgumentsHandlingServiceImpl.class.getName());
 
-    private NoteService noteService;
+    private final NoteService noteService;
 
     public ArgumentsHandlingServiceImpl() {
         noteService = ServiceProvider.getInstance().get(NoteService.class);
     }
 
 
-    public Optional<CliRequestObject> parse(String... args){
-        if(args.length==0)
+    public Optional<CliRequestObject> parse(String... args) {
+        if (args.length == 0)
             return Optional.empty();
         Optional<Command> validCmdAndParams = Arrays.stream(Command.values())
                 .filter(command -> command.getActualCommand().equals(args[0]))
@@ -35,21 +35,20 @@ public class ArgumentsHandlingServiceImpl implements ArgumentsHandlingService {
         Optional<Command> validCommand = Arrays.stream(Command.values())
                 .filter(command -> command.getActualCommand().equals(args[0]))
                 .findAny();
-        if(validCmdAndParams.isPresent()){
+        if (validCmdAndParams.isPresent()) {
             return Optional.of(new CliRequestObject(validCmdAndParams.get(), args, true));
-        }else if(validCommand.isPresent()){
+        } else if (validCommand.isPresent()) {
             return Optional.of(new CliRequestObject(validCommand.get(), args, false));
-        }else {
-            return Optional.of(new CliRequestObject(args));
         }
+        return Optional.of(new CliRequestObject(args));
     }
 
-    public void dispatch(Optional<CliRequestObject> optionalCliRequestObject){
-        if(optionalCliRequestObject.isPresent()){
+    public void dispatch(Optional<CliRequestObject> optionalCliRequestObject) {
+        if (optionalCliRequestObject.isPresent()) {
             CliRequestObject cliRequestObject = optionalCliRequestObject.get();
-            if(cliRequestObject.getCommand()!=null){
-                if(cliRequestObject.isValid()){
-                    switch (cliRequestObject.getCommand()){
+            if (cliRequestObject.getCommand() != null) {
+                if (cliRequestObject.isNoOfArgsValid()) {
+                    switch (cliRequestObject.getCommand()) {
                         case ADD:
                             noteService.add(new Note(cliRequestObject.getArgs()[1], cliRequestObject.getArgs()[2]));
                             break;
@@ -63,15 +62,15 @@ public class ArgumentsHandlingServiceImpl implements ArgumentsHandlingService {
                             SpringApplication.run(NotesAppApplication.class, cliRequestObject.getArgs());
                             break;
                     }
-                }else {
+                } else {
                     String exception = String.format(ExceptionContainer.INVALID_NO_OF_ARGS, cliRequestObject.getCommand().getActualCommand(), cliRequestObject.getCommand().getNoOfParams());
                     logger.severe(exception);
                 }
-            }else{
+            } else {
                 String exception = String.format(ExceptionContainer.NO_SUCH_METHOD, cliRequestObject.getArgs()[0]);
                 logger.severe(exception);
             }
-        }else {
+        } else {
             logger.severe(ExceptionContainer.NO_ARGS_GIVEN);
         }
     }

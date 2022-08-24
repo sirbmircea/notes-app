@@ -3,23 +3,19 @@ package app.model;
 public class CliRequestObject {
     Command command;
     String[] args;
-    boolean valid;
+    boolean noOfArgsValid;
 
-    public CliRequestObject(Command command, String[] args, boolean valid) {
+    public CliRequestObject(Command command, String[] args, boolean noOfArgsValid) {
         this.command = command;
         this.args = args;
-        this.valid = valid;
-    }
-
-    public CliRequestObject(Command command, String[] args) {
-        this.command = command;
-        this.args = args;
+        this.noOfArgsValid = noOfArgsValid;
     }
 
     public CliRequestObject(String[] args) {
         this.args = args;
     }
-    public CliRequestObject(){
+
+    public CliRequestObject() {
 
     }
 
@@ -39,11 +35,11 @@ public class CliRequestObject {
         this.args = args;
     }
 
-    public boolean isValid() {
-        return valid;
+    public boolean isNoOfArgsValid() {
+        return noOfArgsValid;
     }
 
-    public void setValid(boolean valid) {
-        this.valid = valid;
+    public void setNoOfArgsValid(boolean noOfArgsValid) {
+        this.noOfArgsValid = noOfArgsValid;
     }
 }
