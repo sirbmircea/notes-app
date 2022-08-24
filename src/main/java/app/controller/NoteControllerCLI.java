@@ -1,7 +1,7 @@
 package app.controller;
 
 
-import app.service.ArgumentsHandlingService;
+import app.service.impl.ArgumentsHandlingServiceImpl;
 
 public class NoteControllerCLI {
 
@@ -19,7 +19,7 @@ public class NoteControllerCLI {
     }
 
     public void consoleRequest(String... args) {
-        new ArgumentsHandlingService().parseAndDispatch(args);
+        new ArgumentsHandlingServiceImpl().parseAndDispatch(args);
     }
 
 }
