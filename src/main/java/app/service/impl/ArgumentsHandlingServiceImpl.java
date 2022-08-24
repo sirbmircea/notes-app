@@ -2,6 +2,7 @@ package app.service.impl;
 
 import app.NotesAppApplication;
 import app.exceptions.ExceptionContainer;
+import app.model.CliRequestObject;
 import app.model.Command;
 import app.model.Note;
 import app.service.ServiceProvider;
@@ -10,6 +11,7 @@ import app.service.interfaces.NoteService;
 import org.springframework.boot.SpringApplication;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 public class ArgumentsHandlingServiceImpl implements ArgumentsHandlingService {
@@ -22,56 +24,55 @@ public class ArgumentsHandlingServiceImpl implements ArgumentsHandlingService {
         noteService = ServiceProvider.getInstance().get(NoteService.class);
     }
 
-    @Override
-    public void parseAndDispatch(String... args) {
-        if (args.length == 0) {
-            logger.severe(ExceptionContainer.NO_ARGS_GIVEN);
-        } else if (Arrays.stream(Command.values())
-                .noneMatch(command -> command.name().toLowerCase().equals(args[0]))) {
-            String exception = String.format(ExceptionContainer.NO_SUCH_METHOD, args[0]);
-            logger.severe(exception);
-        } else {
-            switch (Command.valueOf(args[0].toUpperCase())) {
-                case ADD:
-                    addCommand(args);
-                    break;
-                case LIST:
-                    listCommand(args);
-                    break;
-                case RUNSPRINGBOOT:
-                    runSpringBoot(args);
-                    break;
-            }
+
+    public Optional<CliRequestObject> parse(String... args){
+        Optional<Command> validCmdAndParams = Arrays.stream(Command.values())
+                .filter(command -> command.getActualCommand().equals(args[0]))
+                .filter(command -> command.getNoOfParams() == args.length - 1)
+                .findAny();
+        Optional<Command> validCommand = Arrays.stream(Command.values())
+                .filter(command -> command.getActualCommand().equals(args[0]))
+                .findAny();
+        if(validCmdAndParams.isPresent()){
+            return Optional.of(new CliRequestObject(validCmdAndParams.get(), args, true));
+        }else if(validCommand.isPresent()){
+            return Optional.of(new CliRequestObject(validCommand.get(), args, false));
+        }else if(args.length!=0){
+            return Optional.of(new CliRequestObject(args));
         }
+        return Optional.empty();
     }
 
-    private void runSpringBoot(String... args) {
-        SpringApplication.run(NotesAppApplication.class, args);
-    }
-
-
-    private void listCommand(String... params) {
-        switch (params.length) {
-            case 1:
-                noteService.list();
-                break;
-            case 2:
-                noteService.list(params[1]);
-                break;
-            default:
-                String exception = String.format(ExceptionContainer.INVALID_NO_OF_ARGS, "list", "0 or 1");
+    public void dispatch(Optional<CliRequestObject> optionalCliRequestObject){
+        if(optionalCliRequestObject.isPresent()){
+            CliRequestObject cliRequestObject = optionalCliRequestObject.get();
+            if(cliRequestObject.getCommand()!=null){
+                if(cliRequestObject.isValid()){
+                    switch (cliRequestObject.getCommand()){
+                        case ADD:
+                            noteService.add(new Note(cliRequestObject.getArgs()[1], cliRequestObject.getArgs()[2]));
+                            break;
+                        case LIST:
+                            noteService.list();
+                            break;
+                        case FIND:
+                            noteService.list(cliRequestObject.getArgs()[1]);
+                            break;
+                        case RUNSPRINGBOOT:
+                            SpringApplication.run(NotesAppApplication.class, cliRequestObject.getArgs());
+                            break;
+                    }
+                }else {
+                    String exception = String.format(ExceptionContainer.INVALID_NO_OF_ARGS, cliRequestObject.getCommand().getActualCommand(), cliRequestObject.getCommand().getNoOfParams());
+                    logger.severe(exception);
+                }
+            }else{
+                String exception = String.format(ExceptionContainer.NO_SUCH_METHOD, cliRequestObject.getArgs()[0]);
                 logger.severe(exception);
-                break;
+            }
+        }else {
+            logger.severe(ExceptionContainer.NO_ARGS_GIVEN);
         }
     }
 
-    private void addCommand(String... params) {
-        if (params.length == 3) {
-            noteService.add(new Note(params[1], params[2]));
-        } else {
-            String exception = String.format(ExceptionContainer.INVALID_NO_OF_ARGS, "add", "2");
-            logger.severe(exception);
-        }
-
-    }
 }

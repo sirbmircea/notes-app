@@ -1,5 +1,10 @@
 package app.service.interfaces;
 
+import app.model.CliRequestObject;
+
+import java.util.Optional;
+
 public interface ArgumentsHandlingService {
-    void parseAndDispatch(String... args);
+    Optional<CliRequestObject> parse(String... args);
+    void dispatch(Optional<CliRequestObject> optionalCliRequestObject);
 }
