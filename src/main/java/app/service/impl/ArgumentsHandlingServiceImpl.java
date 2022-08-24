@@ -26,6 +26,8 @@ public class ArgumentsHandlingServiceImpl implements ArgumentsHandlingService {
 
 
     public Optional<CliRequestObject> parse(String... args){
+        if(args.length==0)
+            return Optional.empty();
         Optional<Command> validCmdAndParams = Arrays.stream(Command.values())
                 .filter(command -> command.getActualCommand().equals(args[0]))
                 .filter(command -> command.getNoOfParams() == args.length - 1)
@@ -37,10 +39,9 @@ public class ArgumentsHandlingServiceImpl implements ArgumentsHandlingService {
             return Optional.of(new CliRequestObject(validCmdAndParams.get(), args, true));
         }else if(validCommand.isPresent()){
             return Optional.of(new CliRequestObject(validCommand.get(), args, false));
-        }else if(args.length!=0){
+        }else {
             return Optional.of(new CliRequestObject(args));
         }
-        return Optional.empty();
     }
 
     public void dispatch(Optional<CliRequestObject> optionalCliRequestObject){
