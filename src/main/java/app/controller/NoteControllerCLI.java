@@ -1,7 +1,11 @@
 package app.controller;
 
 
+import app.model.CliRequestObject;
 import app.service.impl.ArgumentsHandlingServiceImpl;
+import app.service.interfaces.ArgumentsHandlingService;
+
+import java.util.Optional;
 
 public class NoteControllerCLI {
 
@@ -13,13 +17,14 @@ public class NoteControllerCLI {
         return SingletonHolder.INSTANCE;
     }
 
-
+    ArgumentsHandlingService argumentsHandlingService = new ArgumentsHandlingServiceImpl();
     private NoteControllerCLI() {
 
     }
 
     public void consoleRequest(String... args) {
-        new ArgumentsHandlingServiceImpl().parseAndDispatch(args);
+        Optional <CliRequestObject> cliRequestObject = argumentsHandlingService.parse(args);
+        argumentsHandlingService.dispatch(cliRequestObject);
     }
 
 }
