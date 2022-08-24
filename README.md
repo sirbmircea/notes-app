@@ -1,6 +1,6 @@
 # notes-app
 
-A note app that stores notes by Command Line or by Http Requests
+A note app that stores notes by Command Line or by Angular based Web Application
 
 ## Commands
 
