@@ -3,18 +3,18 @@ package app.controller;
 
 import app.service.ArgumentsHandlingService;
 
-public class NoteControllerConsole {
+public class NoteControllerCLI {
 
     private static class SingletonHolder {
-        private static final NoteControllerConsole INSTANCE = new NoteControllerConsole();
+        private static final NoteControllerCLI INSTANCE = new NoteControllerCLI();
     }
 
-    public static NoteControllerConsole getInstance() {
+    public static NoteControllerCLI getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
 
-    private NoteControllerConsole() {
+    private NoteControllerCLI() {
 
     }
 
