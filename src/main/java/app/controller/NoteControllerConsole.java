@@ -1,7 +1,7 @@
 package app.controller;
 
 
-import app.service.ConsoleArgsParsingService;
+import app.service.ArgumentsHandlingService;
 
 public class NoteControllerConsole {
 
@@ -19,7 +19,7 @@ public class NoteControllerConsole {
     }
 
     public void consoleRequest(String... args) {
-        new ConsoleArgsParsingService().parseAndDispatch(args);
+        new ArgumentsHandlingService().parseAndDispatch(args);
     }
 
 }
