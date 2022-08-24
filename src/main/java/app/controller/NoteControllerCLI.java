@@ -17,10 +17,10 @@ public class NoteControllerCLI {
         return SingletonHolder.INSTANCE;
     }
 
-    ArgumentsHandlingService argumentsHandlingService = new ArgumentsHandlingServiceImpl();
+    ArgumentsHandlingService argumentsHandlingService;
 
     private NoteControllerCLI() {
-
+        argumentsHandlingService = new ArgumentsHandlingServiceImpl();
     }
 
     public void consoleRequest(String... args) {
