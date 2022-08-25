@@ -1,6 +1,6 @@
-```diff
-- branch-ul [optimizations-post-submission](https://github.com/sirbmircea/notes-app/tree/optimizations-post-submission) contine cod mai curat si decuplat
-```
+
+branch-ul [optimizations-post-submission](https://github.com/sirbmircea/notes-app/tree/optimizations-post-submission) contine cod mai curat si decuplat
+
 # notes-app
 
 A note app that stores notes by Command Line or by Angular based Web Application
