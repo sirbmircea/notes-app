@@ -1,3 +1,5 @@
+# branch-ul optimizations-post-submission contine cod mai curat
+
 # notes-app
 
 A note app that stores notes by Command Line or by Angular based Web Application
