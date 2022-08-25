@@ -1,5 +1,5 @@
 ```diff
-- branch-ul optimizations-post-submission contine cod mai curat si decuplat
+- branch-ul [optimizations-post-submission](https://github.com/sirbmircea/notes-app/tree/optimizations-post-submission) contine cod mai curat si decuplat
 ```
 # notes-app
 
