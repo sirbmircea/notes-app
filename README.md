@@ -3,7 +3,7 @@ branch-ul [optimizations-post-submission](https://github.com/sirbmircea/notes-ap
 
 # notes-app
 
-A note app that stores notes by Command Line or by Angular based Web Application
+A note app that stores notes by Command Line or by [Angular](https://github.com/sirbmircea/note-app-angular) based Web Application
 
 ## Commands
 
