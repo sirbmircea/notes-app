@@ -19,7 +19,7 @@ java -jar <jar-name>.jar list
 ```
 #### Start Spring boot
 ```shell
-java -jar <jar-name>.jar run-spring-boot
+java -jar <jar-name>.jar runspringboot
 ```
 ## Create jar file
 Open Windows PowerShell in the root folder "notes-app"
