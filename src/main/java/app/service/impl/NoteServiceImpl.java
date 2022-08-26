@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class NoteServiceImpl implements NoteService {
     private static final Logger logger = Logger.getLogger(NoteServiceImpl.class.getName());
 
-    NoteRepository noteRepository;
+    private final NoteRepository noteRepository;
 
     public NoteServiceImpl(NoteRepository noteRepository) {
         this.noteRepository = noteRepository;

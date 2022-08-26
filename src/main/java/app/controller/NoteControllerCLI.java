@@ -17,13 +17,14 @@ public class NoteControllerCLI {
         return SingletonHolder.INSTANCE;
     }
 
-    ArgumentsHandlingService argumentsHandlingService = new ArgumentsHandlingServiceImpl();
-    private NoteControllerCLI() {
+    ArgumentsHandlingService argumentsHandlingService;
 
+    private NoteControllerCLI() {
+        argumentsHandlingService = new ArgumentsHandlingServiceImpl();
     }
 
     public void consoleRequest(String... args) {
-        Optional <CliRequestObject> cliRequestObject = argumentsHandlingService.parse(args);
+        Optional<CliRequestObject> cliRequestObject = argumentsHandlingService.parse(args);
         argumentsHandlingService.dispatch(cliRequestObject);
     }
 

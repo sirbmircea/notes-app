@@ -28,9 +28,9 @@ public class NoteRepositoryFileSystem implements NoteRepository {
     public Note add(Note note) {
         Set<Note> noteSet = list();
         noteSet.add(note);
-        String formatedSet = noteSerializationService.noteSetToJSON(noteSet);
+        String formattedSet = noteSerializationService.noteSetToJSON(noteSet);
         try (FileWriter file = new FileWriter(path.toString())) {
-            file.write(formatedSet);
+            file.write(formattedSet);
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();

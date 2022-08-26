@@ -36,10 +36,7 @@ public class Note implements Serializable {
 
     @Override
     public String toString() {
-        return "Note{" +
-                "noteTitle='" + noteTitle + '\'' +
-                ", noteContent='" + noteContent + '\'' +
-                '}';
+        return "Note with the title: " + noteTitle + " and the content: " + noteContent;
     }
 
     @Override
