@@ -1,6 +1,4 @@
 
-branch-ul [optimizations-post-submission](https://github.com/sirbmircea/notes-app/tree/optimizations-post-submission) contine cod mai curat si decuplat
-
 # notes-app
 
 A note app that stores notes by Command Line or by [Angular](https://github.com/sirbmircea/note-app-angular) based Web Application
@@ -32,5 +30,3 @@ mvn package
 ## Architecture
 
 ![image](https://user-images.githubusercontent.com/111562058/186296114-8b8dc792-568c-42f9-b4a9-b37e591409c8.png)
-
-Mai editez din cand in cand in branch-ul optimizations-post-submission. Masterul e ca am trimis pe mail, dar daca vreti, puteti sa va uitati direct in optimizations-post-submission, pentru ca o sa fie cod mai clean si mai clar. 
