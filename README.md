@@ -1,7 +1,7 @@
 
 # notes-app
 
-A note app that stores notes by Command Line or by [Angular](https://github.com/sirbmircea/note-app-angular) based Web Application
+A note app that stores notes by Command Line or by [Angular](https://github.com/sirbmircea/note-app-angular) based Web Application in MySQLDB using Hibernate
 
 ## Commands
 
@@ -29,4 +29,4 @@ mvn package
 
 ## Architecture
 
-![image](https://user-images.githubusercontent.com/111562058/186296114-8b8dc792-568c-42f9-b4a9-b37e591409c8.png)
+![image](https://user-images.githubusercontent.com/111562058/187317422-1f3863f4-e216-4011-8c1d-620c375d5137.png)
