@@ -1,4 +1,9 @@
 
+```diff
+-Replaced JSON file with MySQLDB in:
+```
+[JPA-Hibernate](https://github.com/sirbmircea/notes-app/tree/JPA-Hibernate) branch
+
 # notes-app
 
 A note app that stores notes by Command Line or by [Angular](https://github.com/sirbmircea/note-app-angular) based Web Application
