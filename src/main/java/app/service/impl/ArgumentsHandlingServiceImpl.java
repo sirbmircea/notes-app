@@ -1,10 +1,10 @@
 package app.service.impl;
 
 import app.NotesAppApplication;
+import app.dto.NoteDTO;
 import app.exceptions.ExceptionContainer;
 import app.model.CliRequestObject;
 import app.model.Command;
-import app.model.Note;
 import app.service.ServiceProvider;
 import app.service.interfaces.ArgumentsHandlingService;
 import app.service.interfaces.NoteService;
@@ -50,7 +50,7 @@ public class ArgumentsHandlingServiceImpl implements ArgumentsHandlingService {
                 if (cliRequestObject.isNoOfArgsValid()) {
                     switch (cliRequestObject.getCommand()) {
                         case ADD:
-                            noteService.add(new Note(cliRequestObject.getArgs()[1], cliRequestObject.getArgs()[2]));
+                            noteService.add(new NoteDTO(0, cliRequestObject.getArgs()[1], cliRequestObject.getArgs()[2]));
                             break;
                         case LIST:
                             noteService.list();

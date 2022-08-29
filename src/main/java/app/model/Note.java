@@ -1,13 +1,13 @@
 package app.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+
+@NamedQuery(name = "Note.list", query = "SELECT n FROM Note n")
+@NamedQuery(name = "Note.find", query = "SELECT n FROM Note n WHERE n.noteTitle = :noteTitle")
 public class Note implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,8 @@ public class Note implements Serializable {
 
     }
 
-    public Note(String noteTitle, String noteContent) {
+    public Note(long id, String noteTitle, String noteContent) {
+        this.id = id;
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
     }

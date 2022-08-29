@@ -1,13 +1,13 @@
 package app.service.interfaces;
 
-import app.model.Note;
+import app.dto.NoteDTO;
 
 import java.util.Set;
 
 public interface NoteService {
-    Note add(Note note);
+    NoteDTO add(NoteDTO note);
 
-    Set<Note> list();
+    Set<NoteDTO> list();
 
-    Note list(String noteTitle);
+    NoteDTO list(String noteTitle);
 }

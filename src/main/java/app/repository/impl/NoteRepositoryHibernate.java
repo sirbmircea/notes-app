@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 public class NoteRepositoryHibernate implements NoteRepository {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public NoteRepositoryHibernate() {
         entityManager = Persistence.createEntityManagerFactory("nttProject").createEntityManager();
@@ -30,24 +30,18 @@ public class NoteRepositoryHibernate implements NoteRepository {
 
     @Override
     public Set<Note> list() {
-        String sql = "SELECT n FROM Note n";
-        entityManager.getTransaction().begin();
-        TypedQuery<Note> typedQuery = entityManager.createQuery(sql, Note.class);
+        TypedQuery<Note> typedQuery = entityManager.createNamedQuery("Note.list", Note.class);
         List<Note> notes = typedQuery.getResultList();
-        entityManager.getTransaction().commit();
         return new HashSet<>(notes);
 
     }
 
     @Override
     public Note list(String noteTitle) {
-        String sql = "SELECT n FROM Note n WHERE n.noteTitle = :noteTitle";
-        entityManager.getTransaction().begin();
-        TypedQuery<Note> typedQuery = (TypedQuery<Note>) entityManager.createQuery(sql);
+        TypedQuery<Note> typedQuery = entityManager.createNamedQuery("Note.find", Note.class);
         typedQuery.setParameter("noteTitle", noteTitle);
         Stream<Note> noteStream = typedQuery.getResultStream();
         Optional<Note> note = noteStream.findAny();
-        entityManager.getTransaction().commit();
-        return note.orElseGet(()->new Note("", ""));
+        return note.orElseGet(() -> new Note(0, "", ""));
     }
 }

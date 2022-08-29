@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.model.Note;
+import app.dto.NoteDTO;
 import app.service.interfaces.NoteService;
 import app.service.ServiceProvider;
 import org.springframework.http.HttpStatus;
@@ -20,17 +20,17 @@ public class NoteControllerREST {
     }
 
     @GetMapping()
-    public ResponseEntity<Set<Note>> list() {
+    public ResponseEntity<Set<NoteDTO>> list() {
         return new ResponseEntity<>(noteService.list(), HttpStatus.OK);
     }
 
     @GetMapping("/search/{noteTitle}")
-    public ResponseEntity<Note> list(@PathVariable("noteTitle") String noteTitle) {
+    public ResponseEntity<NoteDTO> list(@PathVariable("noteTitle") String noteTitle) {
         return new ResponseEntity<>(noteService.list(noteTitle), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Note> add(@RequestBody Note note) {
-        return new ResponseEntity<>(noteService.add(note), HttpStatus.CREATED);
+    public ResponseEntity<NoteDTO> add(@RequestBody NoteDTO noteDTO) {
+        return new ResponseEntity<>(noteService.add(noteDTO), HttpStatus.CREATED);
     }
 }

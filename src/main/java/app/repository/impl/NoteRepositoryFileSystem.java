@@ -16,8 +16,8 @@ import java.util.Set;
 
 public class NoteRepositoryFileSystem implements NoteRepository {
 
-    private NoteSerializationService noteSerializationService;
-    private Path path = Paths.get("notes.json");
+    private final NoteSerializationService noteSerializationService;
+    private final Path path = Paths.get("notes.json");
 
     public NoteRepositoryFileSystem(NoteSerializationService noteSerializationService) {
         this.noteSerializationService = noteSerializationService;
@@ -60,7 +60,7 @@ public class NoteRepositoryFileSystem implements NoteRepository {
                 .filter(note1 -> note1.getNoteTitle()
                         .equals(noteTitle))
                 .findAny()
-                .orElseGet(() -> new Note("", ""));
+                .orElseGet(() -> new Note(0, "", ""));
 
     }
 
