@@ -1,10 +1,8 @@
 package app.service;
 
+import app.repository.impl.NoteRepositoryHibernate;
 import app.repository.interfaces.NoteRepository;
-import app.repository.impl.NoteRepositoryFileSystem;
-import app.service.impl.NoteSerializationServiceImpl;
 import app.service.impl.NoteServiceImpl;
-import app.service.interfaces.NoteSerializationService;
 import app.service.interfaces.NoteService;
 
 import java.util.HashMap;
@@ -15,8 +13,7 @@ public class ServiceProvider {
     private Map<Class, Object> registry = new HashMap<>();
 
     private ServiceProvider() {
-        NoteSerializationService noteSerializationService = new NoteSerializationServiceImpl();
-        NoteRepository noteRepository = new NoteRepositoryFileSystem(noteSerializationService);
+        NoteRepository noteRepository = new NoteRepositoryHibernate();
         registry.put(NoteService.class, new NoteServiceImpl(noteRepository));
     }
 
