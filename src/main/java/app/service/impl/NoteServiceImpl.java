@@ -18,7 +18,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public Note add(Note newNote) {
-        if (noteRepository.list().stream().anyMatch(note -> note.equals(newNote))) {
+        if (noteRepository.list(newNote.getNoteTitle()).equals(newNote)) {
             logger.warning("We have a duplicate!");
             return new Note("", "");
         } else {
