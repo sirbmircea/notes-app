@@ -43,6 +43,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>notes-app-spring</finalName>
 	</build>
 
 </project>
