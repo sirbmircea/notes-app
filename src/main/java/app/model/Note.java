@@ -46,6 +46,9 @@ public class Note implements Serializable {
         Note note = (Note) o;
         return Objects.equals(noteTitle, note.noteTitle);
     }
+    public static Note empty(){
+        return new Note("", "");
+    }
 
     @Override
     public int hashCode() {
